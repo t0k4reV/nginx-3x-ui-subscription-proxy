@@ -1,0 +1,33 @@
+worker_processes 1;
+env SERVERS;
+events {
+    worker_connections 1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    resolver 127.0.0.11 valid=5s ipv6=off;
+
+    server {
+        listen <%= $SITE_PORT %> ssl;
+        server_name <%= $SITE_HOST %>;
+
+        ssl_certificate /etc/nginx/ssl/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+
+        # Обработка запросов с фиксированной частью пути и переменным sub_id
+        location ~ ^/<%= $SUB %>/([^/]+)/?$ {
+            # Извлекаем sub_id из URL
+            set $sub_id $1;
+
+            content_by_lua_file /etc/nginx/lua/config_fetcher.lua;
+        }
+
+        # Заглушка для других запросов
+        location / {
+            return 404;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nginx_proxy_sub
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+    volumes:
+      - ${PATH_SSL_KEY}/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+      - ${PATH_SSL_KEY}/privkey.pem:/etc/nginx/ssl/privkey.pem 
+#    restart: always
+#    logging:
+#      driver: journald
+#      options:
+#        tag: nginx-proxy-sub
