@@ -70,6 +70,7 @@ SITE_HOST=example.com
 SITE_PORT=443
 SERVERS="https://server1.com/sub/ https://server2.com/sub/"
 SUB=sub
+TLS_MODE=off
 ```
 
 ## License
