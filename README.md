@@ -1,8 +1,8 @@
 # nginx-3x-ui-subscription-proxy
 
-A reverse proxy configuration for Nginx to dynamically handle and aggregate 3x-UI subscriptions from multiple servers.
+A reverse proxy configuration for Nginx to dynamically handle and aggregate [3x-UI](https://github.com/MHSanaei/3x-ui?tab=readme-ov-file) subscriptions from multiple servers.
 
-Конфигурация Nginx для объединения подписок с нескольких серверов 3x-UI.
+Конфигурация Nginx для объединения подписок с нескольких серверов [3x-UI](https://github.com/MHSanaei/3x-ui?tab=readme-ov-file).
 
 ## Overview
 This project allows you to set up an Nginx-based reverse proxy that fetches and aggregates subscription configurations from multiple 3x-UI servers. It simplifies subscription management by unifying configurations in a single endpoint.
@@ -31,6 +31,7 @@ Edit the `.env` file and fill in the following variables with your own data:
 
 | Variable        | Description                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------|
+| `TLS_MODE`  | Enables or disables SSL. Default set `off`. When set to `on`, SSL certificates must be generated (e.g., via Certbot), and their paths must be specified in the `PATH_SSL_KEY` variable. |
 | `PATH_SSL_KEY`  | Path to the directory containing your SSL certificate and private key (e.g., `/etc/letsencrypt/live/your_site/`). |
 | `SITE_HOST`     | Domain name for your Nginx server (e.g., `subserver.example`).                                           |
 | `SITE_PORT`     | Port number where Nginx will listen for requests (e.g., `443`).                                |

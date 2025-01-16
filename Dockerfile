@@ -9,6 +9,7 @@ ENV SITE_HOST=localhost
 ENV SITE_PORT=${SITE_PORT}
 ENV SERVERS=${SERVERS}
 ENV SUB=sub
+ENV TLS_MODE=off
 
 # Выставляем порты
 EXPOSE ${SITE_PORT}/tcp

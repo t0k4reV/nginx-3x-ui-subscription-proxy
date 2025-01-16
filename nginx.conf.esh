@@ -11,11 +11,16 @@ http {
     resolver 127.0.0.11 valid=5s ipv6=off;
 
     server {
+        # Включение или отключение TLS
+        <% if [ "$TLS_MODE" != "off" ]; then -%>
         listen <%= $SITE_PORT %> ssl;
-        server_name <%= $SITE_HOST %>;
-
         ssl_certificate /etc/nginx/ssl/fullchain.pem;
         ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+        <% else -%>
+        listen <%= $SITE_PORT %>;
+        <% fi; -%>
+
+        server_name <%= $SITE_HOST %>;
 
         # Обработка запросов с фиксированной частью пути и переменным sub_id
         location ~ ^/<%= $SUB %>/([^/]+)/?$ {
