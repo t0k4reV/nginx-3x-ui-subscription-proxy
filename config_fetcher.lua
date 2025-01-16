@@ -39,11 +39,11 @@ end
 
 -- Возвращаем объединённые конфигурации клиенту
 if #configs > 0 then
-    -- Объединяем и кодируем обратно в base64
-    local combined_configs = table.concat(configs, "\n")
+    -- Объединяем без добавления новой строки между конфигурациями
+    local combined_configs = table.concat(configs)
     local encoded_combined_configs = ngx.encode_base64(combined_configs)
     ngx.header.content_type = "text/plain; charset=utf-8" -- Устанавливаем Content-Type
-    ngx.say(encoded_combined_configs) -- Возвращаем клиенту результат
+    ngx.print(encoded_combined_configs) -- Возвращаем клиенту результат без лишней новой строки
 else
     ngx.status = ngx.HTTP_BAD_GATEWAY
     ngx.say("No configs available")
