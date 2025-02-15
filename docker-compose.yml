@@ -12,8 +12,4 @@ services:
     volumes:
       - ${PATH_SSL_KEY}/fullchain.pem:/etc/nginx/ssl/fullchain.pem
       - ${PATH_SSL_KEY}/privkey.pem:/etc/nginx/ssl/privkey.pem 
-#    restart: always
-#    logging:
-#      driver: journald
-#      options:
-#        tag: nginx-proxy-sub
+    restart: always
