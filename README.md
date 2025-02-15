@@ -1,5 +1,7 @@
 # nginx-3x-ui-subscription-proxy
 
+🇷🇺 [Русская версия README](README_RU.md)
+
 A reverse proxy configuration for Nginx to dynamically handle and aggregate [3x-UI](https://github.com/MHSanaei/3x-ui?tab=readme-ov-file) subscriptions from multiple servers.
 
 Конфигурация Nginx для объединения подписок с нескольких серверов [3x-UI](https://github.com/MHSanaei/3x-ui?tab=readme-ov-file).
