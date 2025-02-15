@@ -4,6 +4,9 @@ A reverse proxy configuration for Nginx to dynamically handle and aggregate [3x-
 
 Конфигурация Nginx для объединения подписок с нескольких серверов [3x-UI](https://github.com/MHSanaei/3x-ui?tab=readme-ov-file).
 
+### Flow
+[![Flow](https://i.postimg.cc/pX59gV8h/temp-Image1-Z8b-SK.avif)](https://postimg.cc/8jDPvSZN)
+
 ## Overview
 This project allows you to set up an Nginx-based reverse proxy that fetches and aggregates subscription configurations from multiple 3x-UI servers. It simplifies subscription management by unifying configurations in a single endpoint.
 
@@ -41,13 +44,12 @@ Edit the `.env` file and fill in the following variables with your own data:
 #### Subscription URL Format
 
 Once you've configured the environment variables, your subscription URL will look like this:
-`https://subserver.example/sub/subscription_ID
-`
+`https://subserver.example/sub/subscription_ID`
 
 Where:
 - `subserver.example` is the domain you set in the `SITE_HOST` variable.
 - `sub` is the static part of the subscription path, set in the `SUB` variable.
-- `subscription_ID` is the unique ID for for each client from 3x-ui.
+- `subscription_ID` is the unique ID for each client from 3x-ui.
 
 ### 4. Start the Application
 Run the following command to start the application:
@@ -76,3 +78,5 @@ TLS_MODE=off
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
+## Contributing
+Contributions are welcome! Feel free to open an issue or submit a pull request.
