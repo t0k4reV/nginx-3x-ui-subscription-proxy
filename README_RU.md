@@ -20,7 +20,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/your-repo/nginx-3x-ui-subscription-proxy.git
+git clone https://github.com/apa4h/nginx-3x-ui-subscription-proxy.git
 cd nginx-3x-ui-subscription-proxy
 ```
 

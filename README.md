@@ -22,7 +22,7 @@ This project allows you to set up an Nginx-based reverse proxy that fetches and 
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-repo/nginx-3x-ui-subscription-proxy.git
+git clone https://github.com/apa4h/nginx-3x-ui-subscription-proxy.git
 cd nginx-3x-ui-subscription-proxy
 ```
 
