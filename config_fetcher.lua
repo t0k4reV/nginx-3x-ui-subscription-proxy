@@ -1,5 +1,38 @@
 local http = require "resty.http"
 
+-- Функция для обработки vless ключей
+local function process_vless_keys(config)
+    local lines = {}
+    for line in config:gmatch("[^\r\n]+") do
+        if line:match("^vless://") then
+            -- Находим позицию @ для извлечения домена
+            local at_pos = line:find("@")
+            if at_pos then
+                -- Извлекаем часть после @
+                local after_at = line:sub(at_pos + 1)
+                -- Находим позицию : после @ для получения домена
+                local colon_pos = after_at:find(":")
+                if colon_pos then
+                    local domain = after_at:sub(1, colon_pos - 1)
+                    -- Находим позицию # для замены названия
+                    local hash_pos = line:find("#")
+                    
+                    if hash_pos then
+                        -- Проверяем домен и заменяем часть после #
+                        if domain == "kosss.ru" then
+                            line = line:sub(1, hash_pos) .. "Sweden"
+                        elseif domain == "france.kosss.ru" then
+                            line = line:sub(1, hash_pos) .. "France"
+                        end
+                    end
+                end
+            end
+        end
+        table.insert(lines, line)
+    end
+    return table.concat(lines, "\n")
+end
+
 -- Получаем список серверов из переменной окружения
 local servers_str = os.getenv("SERVERS")
 if not servers_str then
@@ -28,7 +61,9 @@ for _, base_url in ipairs(servers) do
         -- Декодируем ответ
         local decoded_config = ngx.decode_base64(res.body)
         if decoded_config then
-            table.insert(configs, decoded_config)
+            -- Обрабатываем ключи vless для kosss.ru
+            local processed_config = process_vless_keys(decoded_config)
+            table.insert(configs, processed_config)
         else
             ngx.log(ngx.ERR, "Failed to decode base64 from ", url)
         end
